@@ -17,6 +17,7 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BrightnessRecovery.restore(this)
         status = TextView(this).apply {
             textSize = 16f
             setPadding(32, 48, 32, 32)
