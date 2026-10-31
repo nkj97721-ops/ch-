@@ -227,6 +227,7 @@ class CaptureService : Service() {
                 savedBrightnessValue = Settings.System.getInt(
                     contentResolver, Settings.System.SCREEN_BRIGHTNESS, 128
                 )
+                BrightnessRecovery.save(this, savedBrightnessMode!!, savedBrightnessValue!!)
             }
             Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE,
                 Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
@@ -247,6 +248,9 @@ class CaptureService : Service() {
             } catch (_: Exception) {
                 // WRITE_SETTINGS can be revoked while monitoring.
             }
+        }
+        if (mode != null && value != null) {
+            getSharedPreferences("brightness_recovery", MODE_PRIVATE).edit().clear().commit()
         }
         savedBrightnessMode = null
         savedBrightnessValue = null
