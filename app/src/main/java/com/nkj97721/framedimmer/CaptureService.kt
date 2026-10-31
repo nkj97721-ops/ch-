@@ -227,7 +227,9 @@ class CaptureService : Service() {
                 savedBrightnessValue = Settings.System.getInt(
                     contentResolver, Settings.System.SCREEN_BRIGHTNESS, 128
                 )
-                BrightnessRecovery.save(this, savedBrightnessMode!!, savedBrightnessValue!!)
+                check(BrightnessRecovery.save(this, savedBrightnessMode!!, savedBrightnessValue!!)) {
+                    "Unable to persist brightness recovery snapshot"
+                }
             }
             Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE,
                 Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
