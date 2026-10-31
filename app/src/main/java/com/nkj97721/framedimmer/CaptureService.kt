@@ -239,22 +239,17 @@ class CaptureService : Service() {
     }
 
     private fun restoreBrightness() {
-        val mode = savedBrightnessMode
-        val value = savedBrightnessValue
-        if (mode != null && value != null) {
-            try {
-                Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, value)
-                Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode)
-            } catch (_: Exception) {
-                // WRITE_SETTINGS can be revoked while monitoring.
+        if (savedBrightnessMode != null && savedBrightnessValue != null) {
+            if (BrightnessRecovery.restore(this)) {
+                savedBrightnessMode = null
+                savedBrightnessValue = null
+                dimmed = false
             }
+            // On failure keep the persisted snapshot so the next app launch or boot
+            // can retry restoration instead of discarding the original brightness.
+        } else {
+            dimmed = false
         }
-        if (mode != null && value != null) {
-            getSharedPreferences("brightness_recovery", MODE_PRIVATE).edit().clear().commit()
-        }
-        savedBrightnessMode = null
-        savedBrightnessValue = null
-        dimmed = false
     }
 
     override fun onDestroy() {
