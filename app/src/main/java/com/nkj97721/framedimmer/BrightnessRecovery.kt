@@ -12,8 +12,8 @@ object BrightnessRecovery {
     private const val KEY_MODE = "saved_mode"
     private const val KEY_VALUE = "saved_value"
 
-    fun save(context: Context, mode: Int, value: Int) {
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
+    fun save(context: Context, mode: Int, value: Int): Boolean {
+        return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
             .putInt(KEY_MODE, mode)
             .putInt(KEY_VALUE, value)
             .commit()
