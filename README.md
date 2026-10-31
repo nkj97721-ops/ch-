@@ -9,7 +9,7 @@ Android global high-luminance / flash protection prototype.
 3. Samples at most about 8 frames per second and checks the proportion of sampled pixels whose luma is at least 230/255.
 4. When at least 6% of sampled pixels are very bright, switches system brightness to manual and writes level 1.
 5. After five consecutive sampled frames fall below the trigger, restores the exact brightness value and mode saved before intervention.
-6. Restores brightness on screen-off, projection stop, and normal service teardown.
+6. Restores brightness on screen-off, projection stop, and normal service teardown. The original brightness snapshot is persisted before dimming; if the process is killed, the app retries restoration on next launch or device boot (provided Modify system settings is still granted).
 
 Direct system-brightness control is used instead of a full-screen overlay to avoid an extra compositing layer.
 
@@ -49,6 +49,6 @@ These are initial defaults, not calibrated thresholds. Different panels, OEM dis
 ## Known limitations / next work
 
 - No Shizuku backend yet; direct WRITE_SETTINGS permission is used.
-- No persistent recovery after abrupt process kill or reboot.
+- If Android kills the process abruptly, brightness may remain dim until the next app launch or reboot recovery receiver runs. No third-party app can guarantee recovery while its process is dead.
 - The broad-area threshold may miss small flashes and may react to bright static interfaces.
 - Add configurable thresholds and diagnostic telemetry after testing on the target device.
