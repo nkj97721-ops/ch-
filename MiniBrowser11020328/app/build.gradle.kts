@@ -1,10 +1,10 @@
 plugins { id("com.android.application") }
 
 android {
-    namespace = "com.minibrowser.app11020402"
+    namespace = "com.minibrowser.app11020356"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.minibrowser.app11020402"
+        applicationId = "com.minibrowser.app11020356"
         minSdk = 23
         targetSdk = 35
         versionCode = 11020402
