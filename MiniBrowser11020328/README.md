@@ -8,3 +8,5 @@ Android WebView 极简浏览器，纯黑 OLED 界面。支持网址/搜索、前
 - Permission: INTERNET only
 
 GitHub Actions builds a debug APK on pushes to this branch.
+
+Build workflow: `.github/workflows/minibrowser.yml`.
