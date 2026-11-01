@@ -34,7 +34,7 @@ jobs:
         run: gradle --no-daemon assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: minibrowser-11020402-apk
+          name: minibrowser-11020410-apk
           path: MiniBrowser11020328/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
