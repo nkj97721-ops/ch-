@@ -4,7 +4,7 @@
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
         android:hardwareAccelerated="true"
-        android:label="极简浏览器 11020341"
+        android:label="极简浏览器 11020350"
         android:theme="@android:style/Theme.Material.NoActionBar"
         android:supportsRtl="true">
         <activity
