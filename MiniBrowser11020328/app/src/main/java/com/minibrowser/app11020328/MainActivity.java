@@ -117,6 +117,7 @@ public class MainActivity extends Activity {
     }
 
     private void addTab(String url) {
+        if(web!=null) web.setVisibility(View.GONE);
         WebView w=makeWebView(); tabs.add(w); current=tabs.size()-1; web=w;
         root.addView(w,1,new LinearLayout.LayoutParams(-1,0,1));
         navigate(url);
