@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
     }
 
     private void buildUi() {
-        root=new LinearLayout(this); root.setOrientation(LinearLayout.VERTICAL); root.setBackgroundColor(black); root.setPadding(0,10,0,10);
+        root=new LinearLayout(this); root.setOrientation(LinearLayout.VERTICAL); root.setBackgroundColor(black); int inset=(int)(10*getResources().getDisplayMetrics().density+0.5f); root.setPadding(0,inset,0,inset);
         LinearLayout bar=new LinearLayout(this); bar.setGravity(Gravity.CENTER_VERTICAL); bar.setPadding(8,8,8,8);
         address=new EditText(this); address.setSingleLine(true); address.setTextColor(white); address.setHintTextColor(gray);
         address.setHint("搜索或输入网址"); address.setTextSize(15); address.setPadding(14,6,14,6);
