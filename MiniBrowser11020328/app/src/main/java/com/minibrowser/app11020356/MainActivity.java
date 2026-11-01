@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowInsets;
+import android.os.Build;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
@@ -50,7 +52,7 @@ public class MainActivity extends Activity {
     }
 
     private void buildUi() {
-        root=new LinearLayout(this); root.setOrientation(LinearLayout.VERTICAL); root.setBackgroundColor(black); int inset=(int)(16*getResources().getDisplayMetrics().density+0.5f); root.setOnApplyWindowInsetsListener((v,insets)->{ root.setPadding(0,insets.getSystemWindowInsetTop()+inset,0,insets.getSystemWindowInsetBottom()+inset); return insets; });
+        root=new LinearLayout(this); root.setOrientation(LinearLayout.VERTICAL); root.setBackgroundColor(black); root.setClipToPadding(true); final int extra=(int)(16*getResources().getDisplayMetrics().density+0.5f); root.setOnApplyWindowInsetsListener((v,insets)->{ int top; int bottom; if(Build.VERSION.SDK_INT>=30){ android.graphics.Insets bars=insets.getInsets(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars()); top=bars.top; bottom=bars.bottom; } else { top=insets.getSystemWindowInsetTop(); bottom=insets.getSystemWindowInsetBottom(); } v.setPadding(0,top+extra,0,bottom+extra); return insets; });
         LinearLayout bar=new LinearLayout(this); bar.setGravity(Gravity.CENTER_VERTICAL); bar.setPadding(8,8,8,8);
         address=new EditText(this); address.setSingleLine(true); address.setTextColor(white); address.setHintTextColor(gray);
         address.setHint("搜索或输入网址"); address.setTextSize(15); address.setPadding(14,6,14,6);
